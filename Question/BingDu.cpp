@@ -64,8 +64,9 @@ void Virus_detection()
         outFile.close();
 
 }
-
+/**
 int main()
 {
     Virus_detection();
 }
+*/
