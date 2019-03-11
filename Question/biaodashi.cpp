@@ -3,8 +3,7 @@
 //
 // Created by lwx on 2019/3/8.
 //
-LinkStack OPND;
-LinkStack OPTR;
+
 //返回是运算符！
 bool In(char ch)
 {
@@ -79,6 +78,8 @@ char Operate(char a,char oper,char b)
 }
 char EvaluateExpression()
 {
+    LinkStack OPND;
+    LinkStack OPTR;
     InitStack(OPND);
     InitStack(OPTR);
     ElemType e;

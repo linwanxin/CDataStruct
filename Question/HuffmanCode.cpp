@@ -41,6 +41,7 @@ void printHuffmanCode( HuffmanCode &HC,int n)
          cout<<HC[i] << endl;
      }
 }
+/**
 int main()
 {
      HuffmanTree  HT;
@@ -51,3 +52,4 @@ int main()
      printHuffmanCode(HC,n);
      return 0;
 }
+ */
