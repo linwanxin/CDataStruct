@@ -114,7 +114,10 @@ int InitExpTree()
  * 还缺少了一部！
  * @return
  */
+
+/**
 int main()
 {
     cout<< InitExpTree() << endl;
 }
+ */
