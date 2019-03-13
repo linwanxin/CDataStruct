@@ -7,10 +7,20 @@
 
 #include <string>
 using namespace std;
-typedef struct
+/**
+ * 给一开始用的
+ * typedef struct QElemType
 {
     char name[20];
     char sex;
-}QElemType;
+};
+ */
+/**
+ * 给图的深度优先遍历用的结构
+ */
+ typedef struct QElemType
+ {
+     int elem;
+ };
 
 #endif //CDATASTRUCT_QELEMTYPE_H

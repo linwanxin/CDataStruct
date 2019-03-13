@@ -44,4 +44,6 @@ typedef struct ALGraph
 };
 
 
+//
+int LocateVex(AMGraph &G,int v);
 #endif //CDATASTRUCT_MAP_H

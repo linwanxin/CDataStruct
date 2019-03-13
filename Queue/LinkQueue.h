@@ -20,9 +20,11 @@ typedef struct
 
 bool InitQueue(LinkQueue &Q);
 
-bool EnQuue(LinkQueue &Q,QElemType e);
+bool EnQueue(LinkQueue &Q,QElemType e);
+//再封装一个，使用方可以直接调用
+bool EnQueue(LinkQueue &Q,int elem);
 
-bool DeQuue(LinkQueue &Q,QElemType &e);
+bool DeQueue(LinkQueue &Q,QElemType &e);
 
 bool QueueEmpty(LinkQueue &Q);
 

@@ -11,11 +11,11 @@ bool InitQueue(LinkQueue &Q)
     return true;
 }
 
-bool EnQuue(LinkQueue &Q,QElemType e)
+bool EnQueue(LinkQueue &Q,QElemType e)
 {
     QNode *p = new QNode;
     p->data = e;
-    p->next = nullptr;
+    p->next = NULL;
     //
     Q.rear->next = p;
     //
@@ -23,8 +23,19 @@ bool EnQuue(LinkQueue &Q,QElemType e)
     return true;
 
 }
+bool EnQueue(LinkQueue &Q,int elem)
+{
+    QElemType *e = new QElemType ;
+    e->elem = elem;
+    QNode * p = new QNode;
+    p->data = *e;
+    p->next = NULL;
+    Q.rear -> next = p;
+    Q.rear = p;
+    return true;
+}
 
-bool DeQuue(LinkQueue &Q,QElemType &e)
+bool DeQueue(LinkQueue &Q,QElemType &e)
 {
     if(Q.front == Q.rear)
         return false;

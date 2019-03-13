@@ -2,6 +2,7 @@
 // Created by lwx on 2019/3/11.
 //
 #include "Map.h"
+#include "../Queue/LinkQueue.h"
 #include <iostream>
 
 using namespace std;
@@ -36,7 +37,7 @@ bool CreateUDN(AMGraph &G)
     }
     return true;
 }
-
+//邻接表的定位顶点所在的坐标！
 int LocateVex1(ALGraph &G,char v)
 {
     for(int i=0;i<G.vexnum;++i)
@@ -75,7 +76,7 @@ bool CreateUDG(ALGraph &G)
 }
 
 /**
- * 关于这2个函数，
+ * 关于这2个函数，邻接矩阵表示法和邻接表的实现方式不同，下面是采用邻接表实现！
  */
 //顶点v第一个邻接点
 int FirstAdjVex(ALGraph &G,int v)
@@ -118,6 +119,7 @@ int NextAdjVex(ALGraph &G,int v,int w)
 //深度优先搜索遍历连通图,注意是连通图！
 bool visited[MVNum] = {false};   //是否访问过
 
+//这个DFS针对2种存储形式都可以，但是我实现了邻接表的
 void DFS(ALGraph &G,int v)
 {
     cout<< v << endl;
@@ -154,12 +156,76 @@ void DFS_AL(ALGraph G,int v)
         p = p->nextArc;
     }
 }
-//用邻接矩阵
+//用邻接矩阵表示图的深度优先遍历
+/**
+void DFS_AM(AMGraph G,int v)
+{
+    cout << v ;
+    visited[v] = true;
+    for(int w = 0;w < G.vexnum;w++)
+    {
+        if((G.arcs[v][w] != 0) && (!visited[w]))
+            DFS(G,w);
+
+    }
+}
+ */
+//
+//广度优先遍历搜索连通图
+LinkQueue Q;
+void BFS(ALGraph G,int v)
+{
+    cout << v;
+    visited[v] = true;
+    InitQueue(Q);
+    EnQueue(Q,v);
+    while(!QueueEmpty(Q))
+    {
+        QElemType u;
+        DeQueue(Q,u);//对头出队
+        for(int w = FirstAdjVex(G,u.elem);w >=0;w = NextAdjVex(G,u.elem,w))
+        {
+            if(!visited[w])
+            {
+                cout<< w;
+                visited[w] =true;
+                EnQueue(Q,w);
+            }
+        }
+    }
+}
+//广度优先遍历非连通图
+void BFSTraverse(ALGraph &G)
+{
+    for(int v = 0;v<G.vexnum;++v)
+        visited[v] = false;
+
+    for(int v=0;v<G.vexnum;++v)
+        if(!visited[v])
+            BFS(G,v);
+}
+//还有2种邻接法的广度优先遍历的实现
+//用邻接表表示图的广度优先遍历
+void BFS_AL(ALGraph G,int v)
+{
+    cout << v ;
+    visited[v] = true;
+    ArcNode *p = G.vertices[v].firstArc;
+    while (p!= NULL)
+    {
+        int w = p -> adjvex;
+        if(!visited[w])
+            BFS(G,w);
+        p = p->nextArc;
+    }
+}
 
 
+/**测试遍历
 int main()
 {
     ALGraph G;
     CreateUDG(G);
     DFS(G,0);
 }
+*/
